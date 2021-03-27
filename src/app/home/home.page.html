@@ -1,0 +1,155 @@
+<ion-content>
+  <ion-header [translucent]="true" id="header">
+    <ion-slides #Slider id="slider" pager="true" [options]="slideOpts" preloadImages="true" updateOnImagesReady="true"
+      (mouseenter)="SlideAnimation = false" (mouseleave)="SlideAnimation = true">
+      <ion-slide class="slide">
+        <ion-img class="img-background" src="assets/img1.webp"></ion-img>
+      </ion-slide>
+      <ion-slide class="slide">
+        <ion-img class="img-background" src="assets/img2.jpg"></ion-img>
+      </ion-slide>
+      <ion-slide class="slide">
+        <ion-img class="img-background" src="assets/img3.jpg"></ion-img>
+      </ion-slide>
+      <ion-slide class="slide">
+        <ion-img class="img-background" src="assets/img4.jpg"></ion-img>
+      </ion-slide>
+    </ion-slides>
+
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="0" size="2">
+      </ion-col>
+      <ion-col size-xs="12" size="8">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div id="search-container">
+                <ion-item class="item">
+                  <ion-label position="floating">De la</ion-label>
+                  <ion-input type="date" (ionChange)="CalculeazaRatele()" [(ngModel)]="DeLa"></ion-input>
+                </ion-item>
+                <ion-item class="item">
+                  <ion-label position="floating">Până la</ion-label>
+                  <ion-input type="date" (ionChange)="CalculeazaRatele()" [(ngModel)]="PanaLa"></ion-input>
+                </ion-item>
+
+
+
+                <ion-item class="item" id="input-destinatie">
+                  <ion-label position="floating">Destinație</ion-label>
+                  <ion-input type="text" placeholder="ex: București" debounce="500" [(ngModel)]="Destinatie"
+                    clearInput="true" (ionChange)="Cauta()"></ion-input>
+                </ion-item>
+                <ion-button id="search-btn">
+                  <ion-icon name="search" (click)="Cauta()"></ion-icon>
+                </ion-button>
+                <ion-button class="btn" *ngIf="ListaObiective.length" (click)="booking()">
+                  Booking.com
+                </ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div style="text-align: center;"> 
+                Află mai multe informații despre țara în care vrei să călătorești!
+              </div>
+              <!-- <ion-item class="item" id="input-tara">
+                <ion-label position="floating">Țară</ion-label>
+                <ion-input type="text" placeholder="ex: Romania" [(ngModel)]="FiltruTara.country"
+                  (ionChange)="filterList($event)" clearInput="true"></ion-input>
+              </ion-item> -->
+              <ion-grid>
+                <ion-row class="tara-row tara-header">
+                  <ion-col size="4" style="padding: 0;">
+                    <ion-item class="item" id="input-tara">
+                      <ion-label position="floating">Țară</ion-label>
+                      <ion-input type="text" placeholder="ex: Romania" [(ngModel)]="FiltruTara.country"
+                        (ionChange)="filterList($event)" clearInput="true"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="2">
+                    Rata de vaccinare
+                  </ion-col>
+                  <ion-col size="2">
+                    Rata de vaccinare estimată în perioada selectată
+                  </ion-col>
+                  <ion-col size="2">
+                    Risc
+                  </ion-col>
+                  <ion-col size="2" style="    align-items: center;
+                  display: flex;">
+                    <ion-checkbox (ionChange)="filterList(undefined)" [(ngModel)]="ToateTarile">
+                    </ion-checkbox>
+                    <span style="margin-left: 5px;">
+                      Toate
+                    </span>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="tara-row" *ngFor="let tara of ListaTariFiltrate"
+                  [ngClass]="{'scazut': tara.risc === 'scăzut', 'mediu': tara.risc === 'mediu',  'ridicat': tara.risc === 'ridicat'}">
+                  <ion-col size="4">
+                    {{tara.country}}
+                  </ion-col>
+                  <ion-col size="2">
+                    {{tara.rataVaccinare}}
+                  </ion-col>
+                  <ion-col size="2">
+                    {{tara.rataVaccinareLaPerioadaSelectata}}
+                  </ion-col>
+                  <ion-col size="2">
+                    {{tara.risc}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+
+
+              <!-- <ion-list id="lista-tara" lines="none" *ngIf="ListaTariFiltrate.length">
+                    <ion-item *ngFor="let tara of ListaTariFiltrate" lines="none" class="item-tara"
+                      (click)="SelecteazaTara(tara.country)">
+                      <ion-label class="ion-text-wrap">
+                        <ion-text color="primary">
+                          <h3>{{ tara.country }}</h3>
+                        </ion-text>
+                        <p> Rată vaccinare: {{ tara.rataVaccinare }}</p>
+                        <p> Rată v. estimată: {{ tara.rataVaccinareLaPerioadaSelectata}}</p>
+                      </ion-label>
+                    </ion-item>
+                  </ion-list> -->
+              <!-- <div id="dropdown-tara-container">
+                    <div style=" position: absolute;
+                    top: 0;
+                    left: 0;">
+                </div>
+              </div> -->
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-grid *ngIf="ListaObiective.length">
+                <div style="text-align: center;"> Obiective turistice din aceasta regiune </div>
+                <ion-row class="tara-row" *ngFor="let ob of ListaObiective">
+                  <ion-col size="4">
+                    {{ob.name}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-col size-xs="0" size="2">
+    </ion-col>
+  </ion-grid>
+
+
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>
