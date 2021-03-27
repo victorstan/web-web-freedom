@@ -1,11 +1,101 @@
-#header{
+#header {
   height: 400px;
 }
 
-#slider{
+#slider {
   height: 100%;
 }
 
-.img-background{
-  filter: blur(3px);
+.img-background {
+  filter: brightness(0.5);
+}
+
+#search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.item {
+  margin: 10px;
+  --border-radius: 5px;
+}
+
+#search-btn {
+  width: 59px;
+  height: 59px;
+  --background: #1e1e1e;
+  margin: 10px;
+}
+
+#input-destinatie {
+  --inner-padding-bottom: 4px !important;
+}
+
+#input-tara {
+  // --inner-padding-bottom: 4px !important;
+  margin: 0;
+}
+
+#lista-tara {
+  margin: 10px;
+  border-radius: 5px;
+  margin-top: -7px;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+#dropdown-tara-container {
+  position: relative;
+  width: 230px;
+  height: 79px;
+}
+
+.item-tara {
+  cursor: pointer;
+}
+
+.obiective {
+  transition: all .25s;
+}
+
+.obiective-hidden {
+  height: 0;
+  transition: all .25s;
+}
+
+.tara-row {
+  height: 60px;
+  align-items: center;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 0 5px;
+  background: #353535;
+}
+
+.tara-header {
+  background: #1e1e1e;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+}
+
+.scazut{
+  background: #124912;
+}
+
+.mediu{
+  background-color: #30305d;
+}
+
+.ridicat{
+  background: #5b2121;
+}
+
+.btn{
+  --background: #1e1e1e;
+  height: 59px;
+  margin: 10px;
 }
