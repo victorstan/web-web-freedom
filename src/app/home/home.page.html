@@ -1,9 +1,25 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" id="header">
+  <ion-slides #Slider id="slider" pager="true" [options]="slideOpts"  preloadImages="true" updateOnImagesReady="true" (mouseenter)="SlideAnimation = false" (mouseleave)="SlideAnimation = true">
+    <ion-slide class="slide">
+      <ion-img class="img-background" src="assets/img1.webp"></ion-img>
+    </ion-slide>
+    <ion-slide class="slide">
+      <ion-img class="img-background" src="assets/img2.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide class="slide">
+      <ion-img class="img-background" src="assets/img3.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide class="slide">
+      <ion-img class="img-background" src="assets/img4.jpg"></ion-img>
+    </ion-slide>
+  </ion-slides>
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content>
+<div id="search-container">
+  
+</div>
 </ion-content>
 
 <ion-footer>
